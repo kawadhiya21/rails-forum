@@ -1,0 +1,11 @@
+<% @title = "Sign Up" %>
+<h1>Login via Email</h1>
+<%= form_for(:user, :url => {:controller => 'session' , :action => 'create'}) do |f| %>
+    <p>Email:</br> <%= f.text_field :email %> </p>
+    <p> Password:</br> <%= f.password_field :password %> </p>
+    <%= f.submit :Signup %>
+<% end %>
+<% if flash[:notice] %>
+    <div class='alert alert-error'><%= flash[:notice] %></div>
+<% end %>
+
