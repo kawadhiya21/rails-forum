@@ -1,4 +1,11 @@
 Forum::Application.routes.draw do
+  get "post/add"
+
+  get "post/view"
+
+  resources :categories
+
+
   resources :profiles
 
 
@@ -8,6 +15,7 @@ Forum::Application.routes.draw do
   get "session/destroy"
   get "users/new"
 
+  match 'profile_edit' => 'profiles#edit'
   match 'register' => 'users#new'
   match 'login' => 'session#create'
   match 'logout' => 'session#destroy'

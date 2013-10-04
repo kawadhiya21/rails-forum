@@ -1,6 +1,17 @@
-<h1>Editing profile</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @profile %> |
-<%= link_to 'Back', profiles_path %>
+<h1>Edit your Profile</h1>
+<%= form_for @profile, :multipart => true, :url => {:controller => 'profiles' , :action => 'edit'} do |f| %>
+    <p> Name:</br> <%= f.text_field :name %> </p>
+    <p> Picture:</br> <%= f.file_field :picture %> </p>
+    <p> Date of Birth:</br> <%= f.date_select :birth%> </p>
+    <%= f.submit :Save %>
+<% end %>
+<% if flash[:notice] %>
+    <div class='alert alert-error'><%= flash[:notice] %></div>
+<% end %>
+<% if @profile.errors.any? %>
+    <ul class="Signup_Errors">
+    <% for message_error in @profile.errors.full_messages %>
+        <li>* <%= message_error %></li>
+    <% end %>
+    </ul>
+<% end %>
